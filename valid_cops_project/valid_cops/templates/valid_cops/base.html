@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<head>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Valid Cops</title>
+
+  <!-- Bootstrap core CSS -->
+    {% load staticfiles %}
+  <link href="{% static 'valid_cops/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+
+
+  <!-- Custom fonts for this template -->
+    <link href="{% static 'valid_cops/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet">
+    <link href="{% static 'valid_cops/vendor/simple-line-icons/css/simple-line-icons.css'%}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+  <!-- Plugin CSS -->
+<link href="{% static 'valid_cops/device-mockups/device-mockups.min.css'%}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+    <link href="{% static 'valid_cops/css/new-age.min.css'%}" type="text/css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Poppins" type="text/css" rel="stylesheet">
+
+<link href="{% static 'valid_cops/main.css'%}" type="text/css" rel="stylesheet">
+
+</head>
+</head>
+<body>
+<div id ="search" class="s01">
+      <form method="POST">
+          {% csrf_token %}
+           <fieldset>
+          <legend>Search the name of the shoe you want!</legend>
+        </fieldset>
+        <div class="inner-form">
+          <div class="input-field first-wrap">
+              {{ form.shoe_name }}
+          </div>
+          <div class="input-field second-wrap">
+
+              {{ form.shoe_size }}
+          </div>
+          <div class="input-field third-wrap">
+            <button onclick = "switchview()" class="btn-search" type="submit">Search</button>
+              <script>
+                  function switchview(){
+                      document.getElementsByClassName("container")[0].style.display="none"
+                  }
+              </script>
+          </div>
+        </div>
+      </form>
+    </div>
+
+{% if hidden %}
+<div class="container" style="display: none">
+
+
+      <h1 class="display-3" style="padding-bottom: 20px;">Results</h1>
+
+
+    <!-- Page Features -->
+    <div class="row text-center">
+        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <div class="card-body" style="background-color: #DCDCDC">
+            <h4 class="card-title">StockX</h4>
+            <p class="card-text">Price: {{ stockx_shoe_price }}</p>
+          </div>
+          <div class="card-footer">
+            <a href="{{ goat_href }}" target="_blank">CLICK HERE</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+    <!-- /.row -->
+
+  </div>
+    {% else %}
+    <div class="container">
+
+
+      <h1 class="display-3" style="padding-bottom: 20px;">Results for</h1>
+        <h2 class="display-3" style="padding-bottom: 20px;">{{ shoe_name }}, Size: {{ shoe_size }}</h2>
+
+
+    <!-- Page Features -->
+    <div class="row text-center">
+        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <div class="card-body" style="background-color: #DCDCDC">
+            <h4 class="card-title">StockX</h4>
+            <p class="card-text">Price: {{ stockx_shoe_price }}</p>
+          </div>
+          <div class="card-footer">
+            <a href="{{ stockx_href }}" target="_blank">Click here for StockX link</a>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <div class="card-body" style="background-color: #DCDCDC">
+            <h4 class="card-title">Stadium Goods</h4>
+            <p class="card-text">Price: {{ stadium_price }}</p>
+          </div>
+          <div class="card-footer">
+            <a href="{{ stadiumgoods_href }}" target="_blank">Click here for Stadium Goods link</a>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <div class="card-body" style="background-color: #DCDCDC">
+            <h4 class="card-title">Flight Club</h4>
+            <p class="card-text">Price: {{ flightclub_price }}</p>
+          </div>
+          <div class="card-footer">
+            <a href="{{ flightclub_href }}" target="_blank">Click here for FlightClub link</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+    <!-- /.row -->
+
+  </div>
+{% endif %}
+
+</body>
+</html>
